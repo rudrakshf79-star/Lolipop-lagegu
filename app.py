@@ -1391,7 +1391,7 @@ async def play_game(server_ip_port, thunder, sharma, udp_key, match_code,
             except OSError: await asyncio.sleep(0.5); continue
             except Exception: await asyncio.sleep(0.5); continue
             if ack_state == "ready_to_send_thunder" and not thunder_sent:
-                await start_startup_safe(send_startup)
+                await send_startup()
         return f"match #{match_index} finished"
     except Exception as e:
         print_error(f"[MATCH #{match_index}] {e}"); return f"match #{match_index} error"
@@ -1423,10 +1423,6 @@ async def play_game(server_ip_port, thunder, sharma, udp_key, match_code,
         print_info(f"[MATCH #{match_index}] Closed. UID:{rem} Total:{total}")
         try: bot_state.update_status(uid_str, "IN_MATCH" if rem > 0 else "ONLINE", rem)
         except Exception: pass
-
-async def start_startup_safe(fn):
-    try: await fn()
-    except Exception: pass
 
 # ═══════════════════════════ FRIEND REQUEST ═══════════════════════════
 async def _process_social_packet(raw_bytes, account_data, tag="MAIN"):
@@ -1523,93 +1519,60 @@ async def _handle_team_invite(hex_data, pl, uid_str, current_account_data,
 
         candidates.sort(key=lambda x: len(x[2]) if isinstance(x[2], dict) else 0, reverse=True)
         best_off, decoder, dec = candidates[0]
-        print_info(f"[TEAM-IN {uid_str}] decoded@{best_off}/{decoder} fields={list(dec.keys())[:20]}")
-
-        def _unwrap(d, keys):
-            if not isinstance(d, dict): return None
-            for k in keys:
-                v = d.get(k) if k in d else d.get(str(k))
-                if isinstance(v, dict) and "data" in v: return v["data"]
-                if isinstance(v, dict): return v
-            return None
-
-        target_dict = None
-        for kp in [["5"], ["4"], ["6"], ["2"], ["1"]]:
-            u = _unwrap(dec, kp)
-            if isinstance(u, dict) and len(u) >= 3:
-                target_dict = u
-                print_info(f"[TEAM-IN {uid_str}] nested@{kp[0]}")
-                break
-        if target_dict is None: target_dict = dec
-
-        def _g(d, k):
-            if not isinstance(d, dict): return None
-            v = d.get(k) if k in d else d.get(str(k))
-            if isinstance(v, dict) and "data" in v: return v["data"]
-            if isinstance(v, dict):
-                for kk in ["1","2","3","4","5","6","7","8"]:
-                    vv = v.get(kk) if kk in v else v.get(int(kk))
-                    if isinstance(vv, dict) and "data" in vv: return vv["data"]
-            return v
-
+        
         group_id = None
-        for k in list(target_dict.keys()):
-            c = _g(target_dict, k)
-            if isinstance(c, str) and 20 <= len(c) <= 40:
-                group_id = c
-                print_success(f"[TEAM-IN {uid_str}] 📋 group_id@f{k}: {c[:24]}...")
-                break
-        if not group_id:
-            for k in list(dec.keys()):
-                c = _g(dec, k)
-                if isinstance(c, str) and 20 <= len(c) <= 40:
-                    group_id = c
-                    print_success(f"[TEAM-IN {uid_str}] 📋 group_id@root.f{k}: {c[:24]}...")
-                    break
-
-        own_acc = str(current_account_data.get('account_id')) if current_account_data else None
         inviter = None
-        all_f = list(target_dict.keys()) + list(dec.keys())
-        for k in all_f:
-            c = _g(target_dict, k) or _g(dec, k)
-            if c and str(c).isdigit() and 6 <= len(str(c)) <= 15:
-                if str(c) != uid_str and str(c) != own_acc:
-                    inviter = str(c)
-                    print_success(f"[TEAM-IN {uid_str}] 👤 inviter@f{k}: {c}")
-                    break
 
-        tc = None
-        for k in all_f:
-            c = _g(target_dict, k) or _g(dec, k)
-            if c and str(c).isdigit() and len(str(c)) == 7:
-                tc = str(c); break
-        if tc:
-            async with _team_state["lock"]:
-                _team_state["team_code"] = tc
-            print_success(f"[TEAM-IN {uid_str}] 📢 Team Code: {tc}")
+        def extract_strings(d):
+            nonlocal group_id, inviter
+            if isinstance(d, dict):
+                for k, v in d.items():
+                    if isinstance(v, dict) and "data" in v:
+                        val = v["data"]
+                        if isinstance(val, str):
+                            if 20 <= len(val) <= 40 and (group_id is None):
+                                group_id = val
+                            elif val.isdigit() and 6 <= len(val) <= 15:
+                                if str(val) != uid_str and (inviter is None):
+                                    inviter = str(val)
+                        elif isinstance(val, dict) or isinstance(val, list):
+                            extract_strings(val)
+                    elif isinstance(v, (dict, list)):
+                        extract_strings(v)
 
-        is_member = (_team_state["leader_uid"] != uid_str)
-        if inviter and group_id and is_member:
+        extract_strings(dec)
+
+        if inviter and group_id:
             async with _team_state["members_lock"]:
                 already = uid_str in _team_state["members"]
+            
             if already:
                 return True
+                
             print_success(f"[TEAM-IN {uid_str}] 📨 ACCEPT: inviter={inviter} group={group_id[:16]}...")
+            
             accepted = False
             for attempt in range(3):
                 try:
                     acc = accept_team_invite(int(inviter), group_id, current_key, current_iv)
                     if writer and not writer.is_closing():
-                        writer.write(acc); await writer.drain()
+                        writer.write(acc)
+                        await writer.drain()
                         print_success(f"[TEAM-IN {uid_str}] ✅ accept #{attempt+1} ({len(acc)}B)")
-                        accepted = True; break
+                        accepted = True
+                        break
                 except Exception as e:
                     print_warning(f"[TEAM-IN {uid_str}] accept err #{attempt+1}: {e}")
                 await asyncio.sleep(0.8)
+                
             if accepted:
                 await _team_member_join(uid_str)
             return True
-        return False
+        else:
+            if DEBUG_TEAM_PACKETS:
+                print_warning(f"[TEAM-IN {uid_str}] ❌ ID's not found (group={group_id}, inviter={inviter})")
+            return False
+
     except Exception as e:
         print_warning(f"[TEAM-IN {uid_str}] error: {e}")
         return False
