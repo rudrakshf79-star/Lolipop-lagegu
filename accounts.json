@@ -1,0 +1,114 @@
+[
+  {
+    "uid": "8306475419",
+    "password": "NEXXOO_6E9CA81D2E5F",
+    "nickname": "\u2074\u00b3\u00b2\u00b2\u00b9NEXXOO",
+    "open_id": "b4192b9a27e3e78ef5401a8c1b6fafaf",
+    "access_token": "b3a803914b7b382ebf590f6f21b3a4e893d98079e3de6ee7961f94a690f30922",
+    "account_id": 18781011602,
+    "jwt": "eyJhbGciOiJIUzI1NiIsInN2ciI6IjMiLCJ0eXAiOiJKV1QifQ.eyJhY2NvdW50X2lkIjoxODc4MTAxMTYwMiwibmlja25hbWUiOiIwK1NCK29yNjBhSFErdDBvSVR4aGZYND0iLCJub3RpX3JlZ2lvbiI6IklORCIsImxvY2tfcmVnaW9uIjoiSU5EIiwiZXh0ZXJuYWxfaWQiOiJiNDE5MmI5YTI3ZTNlNzhlZjU0MDFhOGMxYjZmYWZhZiIsImV4dGVybmFsX3R5cGUiOjQsInBsYXRfaWQiOjEsImNsaWVudF92ZXJzaW9uIjoiMi4xMzMuOSIsImNsaWVudF92ZXJzaW9uX2NvZGUiOiIyMDE5MTE4NTI3IiwiZW11bGF0b3Jfc2NvcmUiOjAsImlzX2VtdWxhdG9yIjpmYWxzZSwiY291bnRyeV9jb2RlIjoiSU4iLCJleHRlcm5hbF91aWQiOjgzMDY0NzU0MTksInJlZ19hdmF0YXIiOjEwMjAwMDAwNywic291cmNlIjowLCJsb2NrX3JlZ2lvbl90aW1lIjowLCJjbGllbnRfdHlwZSI6Miwic2lnbmF0dXJlX21kNSI6IjFhYzRiODBlY2YwNDc4YTQ0MjAzYmY4ZmFjNjEyMGY1IiwidXNpbmdfdmVyc2lvbiI6MiwicmVsZWFzZV9jaGFubmVsIjoiYW5kcm9pZF9tYXgiLCJyZWxlYXNlX3ZlcnNpb24iOiJPQjU1IiwiZXhwIjoxNzkyMzQ0NDgyfQ.7OZikeeubb7Xf2Y55z6PrnHNDn8MYts-MJOHiVqWfGU",
+    "online_ip_port": "202.181.79.18:39699",
+    "chat_ip_port": "202.181.78.211:39801",
+    "msdk_ua": "GarenaMSDK/4.0.42(SM-G998B ;Android 14;en;IN;app 2.131.0 2019118527;)",
+    "unity_ua": "UnityPlayer/2021.3.27f1 (UnityWebRequest/1.0, libcurl/8.5.0-DEV)",
+    "created_at": "2026-10-18T14:58:03.157554"
+  },
+  {
+    "uid": "8306475443",
+    "password": "NEXXOO_D4AA1D3C3F5B",
+    "nickname": "\u2076\u2074\u2075\u00b3\u2075NEXXOO",
+    "open_id": "836a5a578a2580441d849b2ca8ae7a26",
+    "access_token": "fd24a8d37a2e55d01aa391c90edbbd79c4ce592b512f98b26bd6bce964438436",
+    "account_id": 18781011644,
+    "jwt": "eyJhbGciOiJIUzI1NiIsInN2ciI6IjMiLCJ0eXAiOiJKV1QifQ.eyJhY2NvdW50X2lkIjoxODc4MTAxMTY0NCwibmlja25hbWUiOiIwK1NEMnJpTWdlTFgrdGVFNWRGM2QyaytkaTA9Iiwibm90aV9yZWdpb24iOiJJTkQiLCJsb2NrX3JlZ2lvbiI6IklORCIsImV4dGVybmFsX2lkIjoiODM2YTVhNTc4YTI1ODA0NDFkODQ5YjJjYThhZTdhMjYiLCJleHRlcm5hbF90eXBlIjo0LCJwbGF0X2lkIjoxLCJjbGllbnRfdmVyc2lvbiI6IjIuMTMzLjkiLCJjbGllbnRfdmVyc2lvbl9jb2RlIjoiMjAxOTExODUyNyIsImVtdWxhdG9yX3Njb3JlIjowLCJpc19lbXVsYXRvciI6ZmFsc2UsImNvdW50cnlfY29kZSI6IklOIiwiZXh0ZXJuYWxfdWlkIjo4MzA2NDc1NDQzLCJyZWdfYXZhdGFyIjoxMDIwMDAwMDcsInNvdXJjZSI6MCwibG9ja19yZWdpb25fdGltZSI6MCwiY2xpZW50X3R5cGUiOjIsInNpZ25hdHVyZV9tZDUiOiIxYWM0YjgwZWNmMDQ3OGE0NDIwM2JmOGZhYzYxMjBmNSIsInVzaW5nX3ZlcnNpb24iOjIsInJlbGVhc2VfY2hhbm5lbCI6ImFuZHJvaWRfbWF4IiwicmVsZWFzZV92ZXJzaW9uIjoiT0I1NSIsImV4cCI6MTc5MjM0NDQ4Mn0.umMRR6k289YRKdJuUgL9yRad5nH-Y5iyIWwdfNfIlrg",
+    "online_ip_port": "202.181.79.18:39699",
+    "chat_ip_port": "202.181.79.68:39801",
+    "msdk_ua": "GarenaMSDK/4.0.42(CPH2095 ;Android 12;en;ID;app 2.129.1 2019118142;)",
+    "unity_ua": "UnityPlayer/2020.3.45f1 (UnityWebRequest/1.0, libcurl/8.5.0-DEV)",
+    "created_at": "2026-10-18T14:58:03.349186"
+  },
+  {
+    "uid": "8306468935",
+    "password": "NEXXOO_AEA53093CF31"
+  },
+  {
+    "uid": "8306468974",
+    "password": "NEXXOO_338AE3EE0115"
+  },
+  {
+    "uid": "NEXXOO_37EE79D6C356",
+    "password": "8306468935"
+  },
+  {
+    "uid": "NEXXOO_AEA53093CF31",
+    "password": "8306468946"
+  },
+  {
+    "uid": "NEXXOO_A80E1DAC9F15",
+    "password": "8306468952"
+  },
+  {
+    "uid": "NEXXOO_991211174231",
+    "password": "8306468974"
+  },
+  {
+    "uid": "NEXXOO_338AE3EE0115",
+    "password": "8306469093"
+  },
+  {
+    "uid": "NEXXOO_521F74A8637E",
+    "password": "8306475236"
+  },
+  {
+    "uid": "NEXXOO_CC6FE7396761",
+    "password": "8306475339"
+  },
+  {
+    "uid": "NEXXOO_721BCCD997E9",
+    "password": "8306475352"
+  },
+  {
+    "uid": "NEXXOO_ED0669C8AAED",
+    "password": "8306475443"
+  },
+  {
+    "uid": "8306469093",
+    "password": "NEXXOO_521F74A8637E"
+  },
+  {
+    "uid": "8306475236",
+    "password": "NEXXOO_CC6FE7396761"
+  },
+  {
+    "uid": "8306475339",
+    "password": "NEXXOO_721BCCD997E9"
+  },
+  {
+    "uid": "8306475352",
+    "password": "NEXXOO_ED0669C8AAED"
+  },
+  {
+    "uid": "8306468439",
+    "password": "NEXXOO_FF1235E088B1"
+  },
+  {
+    "uid": "8306468477",
+    "password": "NEXXOO_957533A28B2F"
+  },
+  {
+    "uid": "8306468460",
+    "password": "NEXXOO_35BD7A46E78A"
+  },
+  {
+    "uid": "8306468481",
+    "password": "NEXXOO_37EE79D6C356"
+  },
+  {
+    "uid": "8306468946",
+    "password": "NEXXOO_A80E1DAC9F15"
+  },
+  {
+    "uid": "8306468952",
+    "password": "NEXXOO_991211174231"
+  }
+]
